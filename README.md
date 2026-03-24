@@ -1,22 +1,34 @@
-# HexAir - Advanced WiFi Pentesting Framework
+# 🔓 HexAir
+**Wireless Auditing & Security Testing Toolkit for Kali Linux**
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Kali Linux](https://img.shields.io/badge/platform-Kali%20Linux-black.svg)](https://www.kali.org/)
-[![Aircrack-ng](https://img.shields.io/badge/tools-aircrack--ng-orange.svg)](https://www.aircrack-ng.org/)
+HexAir is a powerful, menu-driven wireless assessment tool that automates monitor mode setup, network scanning, and provides a comprehensive suite of attacks including handshake capture, cracking, deauthentication, DoS/DDoS, Evil Twin, and brute-force password attacks.
 
-**HexAir** is a production-ready WiFi penetration testing framework for Kali Linux. Automatically detects monitor-capable interfaces, scans networks, and provides complete attack suite: handshake capture/cracking, deauth/DoS/DDoS, WPS Pixie Dust, Evil Twin.
+---
 
 ## ✨ Features
 
-- ✅ Auto Interface Detection (monitor mode)
-- 🔍 Real-time Network Scanning (BSSID/Channel/ESSID)
-- 🤝 WPA2 Handshake Capture + Cracking
-- ⚡ WPS Pixie Dust (CVE-2011-1547)
-- 💥 Deauth/DoS/DDoS Attacks
-- 👥 Evil Twin Rogue AP
-- 🧹 Auto Cleanup
+- ✅ Automatic monitor mode detection & setup
+- 📡 Scan & display all nearby Wi-Fi networks
+- 🎯 Target selection from discovered networks
+- 🔑 Capture WPA/WPA2 handshake
+- 🔓 Crack captured handshake with dictionary/wordlist
+- 💥 Deauthentication (Deauth) attack
+- 🌊 DoS / DDoS attacks on target network
+- 🧪 Evil Twin access point creation
+- 🔢 Brute-force password attack
+- 🎨 Interactive CLI with numbered options
 
-## 📦 Installation
+---
+
+## 📋 Prerequisites
+
+- **Kali Linux** (recommended) or any Debian-based distro with wireless tools
+- **External Wi-Fi adapter** that supports monitor mode and packet injection
+- Root privileges
+
+---
+
+## 🚀 Installation
 
 ```bash
 # 1. Clone repository
@@ -32,44 +44,87 @@ sudo apt update && sudo apt install -y aircrack-ng hashcat hcxtools
 # 4. Run as root
 sudo ./wifi_pentest.sh
 
-🚀 Quick Start
 
+```bash
+sudo apt update
+sudo apt install aircrack-ng mdk4 hostapd dnsmasq wordlists -y
+```
 
+🛠 Usage
 
-[+] wlan0 supports monitor mode
-[+] Scanning networks...
-0: MyWiFi | AA:BB:CC:DD:EE:FF | 36 | -45dBm
+1. Run the tool as root:
 
-1. Capture Handshake    4. Deauth Attack
-2. Crack Handshake      5. DoS (ARP Replay)
-3. Brute Force WPS      6. DDoS Multi-channel
-7. Evil Twin AP         0. Exit
+sudo bash wifi_pentest.sh
 
-🛠️ Attack Modules
+1. The tool will:
+   · Check for monitor mode capability and enable it automatically
+   · Scan for available Wi-Fi networks and display them with numbers
+   · Prompt you to select a target by number
+2. After selecting a target, you'll see the main menu:
 
+```
+[1] Capture Handshake
+[2] Crack Handshake (requires .cap file)
+[3] Deauth Attack
+[4] DoS Attack
+[5] DDoS Attack
+[6] Evil Twin
+[7] Brute Force Password Attack
+[8] Exit
+```
 
-Module	Technique	Output Files
-Handshake	Deauth + Capture	handshake-01.cap
-Crack	Dictionary (rockyou.txt)	Cracked password
-WPS Pixie Dust	Offline PIN	WPA key
-Deauth	Frame Injection	Client disconnect
-DoS	ARP Replay	Network flood
-DDoS	Multi-channel	AP disruption
-Evil Twin	Rogue AP	Client creds
+📸 Example
 
-📁 Structure
+```
+$ sudo bash wifi_pentest.sh
 
+[*] Checking wireless interfaces...
+[+] Monitor mode enabled on wlan0mon.
+[*] Scanning networks. Press Ctrl+C when done...
 
+Available networks:
+1) HomeWiFi - 2C:30:33:12:4A:B1 (CH 6)
+2) NeighborNet - 6A:12:3F:22:BC:44 (CH 1)
 
-HexAir/
-├── wifi_pentest.sh     # Main framework
-├── README.md          # This file
-└── LICENSE            # MIT License
+Select target number: 1
 
-⚠️ Legal Notice
-Authorized pentesting only. For security assessments, red teaming, and owned networks.
+Target: HomeWiFi [2C:30:33:12:4A:B1]
+
+=== Main Menu ===
+[1] Capture Handshake
+[2] Crack Handshake
+[3] Deauth Attack
+[4] DoS Attack
+[5] DDoS Attack
+[6] Evil Twin
+[7] Brute Force Password Attack
+[8] Exit
+
+Choice:
+```
+
+---
+
+⚠️ Legal Disclaimer
+
+HexAir is intended for educational purposes and authorized security testing only. Unauthorized use against networks you do not own or have explicit permission to test is illegal. The author assumes no liability for misuse or damage caused by this tool.
+
+---
+
+🤝 Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request with your improvements or new features.
+
+---
 
 📄 License
-MIT License - see LICENSE [blocked] file
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🐣 Project by neel470
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
